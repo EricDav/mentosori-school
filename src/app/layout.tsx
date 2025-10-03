@@ -5,7 +5,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'CampusConnect',
+  title: 'Self-Starters House Montessori',
   description: 'A modern and professional school website.',
   icons: {
     icon: '/favicon.ico',

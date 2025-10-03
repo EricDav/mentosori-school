@@ -46,9 +46,9 @@ export default function ContactSection() {
               Have questions? We're here to help. Send us a message and we'll respond as soon as possible.
             </p>
             <div className="space-y-2">
-                <h3 className="font-semibold">CampusConnect Academy</h3>
-                <p className="text-muted-foreground">123 Education Lane, Knowledge City, 54321</p>
-                <p className="text-muted-foreground">Email: contact@campusconnect.edu</p>
+                <h3 className="font-semibold">Self-Starters House Montessori</h3>
+                <p className="text-muted-foreground">35 Akintan Street, Surulere, Lagos</p>
+                <p className="text-muted-foreground">Email: contact@selfstartershouse.edu</p>
                 <p className="text-muted-foreground">Phone: (123) 456-7890</p>
             </div>
           </div>

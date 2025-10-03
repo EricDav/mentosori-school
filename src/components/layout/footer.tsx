@@ -8,10 +8,10 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between space-y-4 text-center md:flex-row md:space-y-0">
           <div className="flex items-center gap-2">
             <School className="h-6 w-6 text-primary" />
-            <span className="font-headline text-lg font-bold">CampusConnect</span>
+            <span className="font-headline text-lg font-bold">Self-Starters House Montessori</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} CampusConnect. All rights reserved.
+            &copy; {new Date().getFullYear()} Self-Starters House Montessori. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
             <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">

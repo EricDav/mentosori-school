@@ -22,7 +22,7 @@ export default function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <School className="h-6 w-6 text-primary" />
-          <span className="font-headline text-xl font-bold text-primary">CampusConnect</span>
+          <span className="font-headline text-xl font-bold text-primary">Self-Starters</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -48,7 +48,7 @@ export default function Header() {
             <nav className="grid gap-6 text-lg font-medium mt-8">
               <Link href="/" className="flex items-center gap-2 text-lg font-semibold" onClick={() => setSheetOpen(false)}>
                  <School className="h-6 w-6 text-primary" />
-                <span className="font-headline text-xl font-bold text-primary">CampusConnect</span>
+                <span className="font-headline text-xl font-bold text-primary">Self-Starters</span>
               </Link>
               {navLinks.map((link) => (
                 <Link
