@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A bright, modern school library with students studying.",
+      "imageUrl": "https://images.unsplash.com/photo-1693921398753-c5d114e8ae6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2hvb2wlMjBsaWJyYXJ5fGVufDB8fHx8MTc1OTQ5MDIzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "school library"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Students collaborating on a science project.",
+      "imageUrl": "https://images.unsplash.com/photo-1758685848895-e724272475d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdHVkZW50cyUyMHNjaWVuY2V8ZW58MHx8fHwxNzU5NDQ5MTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students science"
+    },
+    {
+      "id": "gallery-2",
+      "description": "School basketball team celebrating a victory.",
+      "imageUrl": "https://images.unsplash.com/photo-1706841533873-2591728aec25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiYXNrZXRiYWxsJTIwdGVhbXxlbnwwfHx8fDE3NTk0MzQ3NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "basketball team"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Students performing in a school play.",
+      "imageUrl": "https://images.unsplash.com/photo-1619211142219-e95624e2fb51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzY2hvb2wlMjBwbGF5fGVufDB8fHx8MTc1OTQwMjMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "school play"
+    },
+    {
+      "id": "gallery-4",
+      "description": "An art class with students painting on easels.",
+      "imageUrl": "https://images.unsplash.com/photo-1654386016692-40c6d18d7aad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhcnQlMjBjbGFzc3xlbnwwfHx8fDE3NTkzNzk4MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "art class"
+    },
+    {
+      "id": "staff-1",
+      "description": "Portrait of Principal Jane Doe.",
+      "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d29tYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTkzOTY1NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "staff-2",
+      "description": "Portrait of Vice Principal John Smith.",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTk0NzE4Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "staff-3",
+      "description": "Portrait of Science Teacher Emily White.",
+      "imageUrl": "https://images.unsplash.com/photo-1643773664163-1b7c307ae888?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVhY2hlciUyMHBvcnRyYWl0fGVufDB8fHx8MTc1OTQwODI5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teacher portrait"
+    },
+    {
+      "id": "staff-4",
+      "description": "Portrait of Arts Teacher Michael Brown.",
+      "imageUrl": "https://images.unsplash.com/photo-1624918941507-6a97d03bb914?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhcnRpc3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTk0Mjk3NTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artist portrait"
+    }
+  ]
 }
