@@ -1,30 +1,32 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
+import { Button } from '../ui/button';
 
 const newsItems = [
   {
-    title: 'Annual Science Fair Winners Announced',
-    date: 'March 15, 2024',
-    category: 'Academics',
-    description: 'Our students showcased incredible innovation at this year\'s science fair. See the list of winners and their groundbreaking projects.',
+    title: 'Self-starters House Montessori School: A Journey of Excellence',
+    date: 'October 1, 2023',
+    category: 'School History',
+    description: 'Self-starters House Montessori School started on 28th September 2008 in number 35 Akintan street Surulere, Lagos. Self-starters House Montessori School is a quality school where children are bound to receive excellent program through the year.',
   },
   {
-    title: 'Varsity Basketball Team Wins Championship',
-    date: 'March 12, 2024',
-    category: 'Sports',
-    description: 'A thrilling final match saw our team clinch the championship title. Read the full game report and celebrate with our champions.',
+    title: 'Our Vision for the Future',
+    date: 'September 20, 2023',
+    category: 'Future Plans',
+    description: 'We strive to be one of the best nursery/primary schools in Nigeria by the year 2035 and one of the leading educational institutions in West Africa, delivering a world-class and well-rounded education by the year 2040.',
   },
   {
-    title: 'Upcoming Parent-Teacher Conferences',
-    date: 'March 10, 2024',
-    category: 'Announcement',
-    description: 'Parent-teacher conferences are scheduled for the last week of March. Please sign up for a slot to discuss your child\'s progress.',
+    title: 'Preparing Children for a Dynamic World',
+    date: 'September 15, 2023',
+    category: 'Education Philosophy',
+    description: 'For children to be able to think out of the box, early childhood is the best time to start. We need to produce children who are thinkers. Most of the jobs in existence today were not in existence ten or twenty years ago. Children need to be prepared for a dynamic world where things are always changing.',
   },
 ];
 
 export default function NewsSection() {
   return (
-    <section id="news" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+    <section id="news" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
           <div className="space-y-2">
@@ -51,6 +53,13 @@ export default function NewsSection() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="text-center mt-12">
+            <Button asChild className="bg-accent hover:bg-accent/90">
+                <Link href="/admin/content-tool">
+                    Generate More News
+                </Link>
+            </Button>
         </div>
       </div>
     </section>
