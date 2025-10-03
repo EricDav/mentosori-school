@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Newspaper, Menu, School } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -20,10 +21,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
+      <div className="container flex h-20 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <School className="h-6 w-6 text-primary" />
-          <span className="font-headline text-xl font-bold text-primary">Self-Starters</span>
+          <Image
+            src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+            alt="Self-Starters House Montessori Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -47,9 +53,14 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="right">
             <nav className="grid gap-6 text-lg font-medium mt-8">
-              <Link href="/" className="flex items-center gap-2 text-lg font-semibold" onClick={() => setSheetOpen(false)}>
-                 <School className="h-6 w-6 text-primary" />
-                <span className="font-headline text-xl font-bold text-primary">Self-Starters</span>
+              <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setSheetOpen(false)}>
+                 <Image
+                    src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+                    alt="Self-Starters House Montessori Logo"
+                    width={120}
+                    height={40}
+                    className="object-contain"
+                  />
               </Link>
               {navLinks.map((link) => (
                 <Link

@@ -1,5 +1,6 @@
-import { Twitter, Instagram, Facebook, School } from 'lucide-react';
+import { Twitter, Instagram, Facebook } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,8 +8,13 @@ export default function Footer() {
       <div className="container mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between space-y-4 text-center md:flex-row md:space-y-0">
           <div className="flex items-center gap-2">
-            <School className="h-6 w-6 text-primary" />
-            <span className="font-headline text-lg font-bold">Self-Starters House Montessori</span>
+            <Image
+              src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+              alt="Self-Starters House Montessori Logo"
+              width={150}
+              height={50}
+              className="object-contain"
+            />
           </div>
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Self-Starters House Montessori. All rights reserved.
