@@ -9,12 +9,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const formSchema = z.object({
   studentFirstName: z.string().min(1, 'First name is required'),
   studentLastName: z.string().min(1, 'Last name is required'),
   dateOfBirth: z.string().min(1, 'Date of birth is required'),
-  address: z.string().min(1, 'Address is required'),
+  subject: z.string().min(1, 'Subject is required'),
   parentFirstName: z.string().min(1, "Parent's first name is required"),
   parentLastName: z.string().min(1, "Parent's last name is required"),
   parentEmail: z.string().email('Invalid email address'),
@@ -29,7 +30,7 @@ export default function RegistrationForm() {
       studentFirstName: '',
       studentLastName: '',
       dateOfBirth: '',
-      address: '',
+      subject: '',
       parentFirstName: '',
       parentLastName: '',
       parentEmail: '',
@@ -79,10 +80,20 @@ export default function RegistrationForm() {
                     <FormMessage />
                   </FormItem>
                 )} />
-                 <FormField control={form.control} name="address" render={({ field }) => (
+                 <FormField control={form.control} name="subject" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Home Address</FormLabel>
-                    <FormControl><Input placeholder="123 Main St" {...field} /></FormControl>
+                    <FormLabel>Subject</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a subject" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Admission">Admission</SelectItem>
+                        <SelectItem value="General Enquiry">General Enquiry</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )} />

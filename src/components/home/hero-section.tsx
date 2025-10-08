@@ -20,14 +20,14 @@ export default function HeroSection() {
       )}
       <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 flex flex-col items-center gap-4 p-4">
-        <h1 className="font-headline text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+        <h1 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
           Welcome to Self-Starters House Montessori
         </h1>
         <p className="max-w-2xl text-lg text-primary-foreground/80 md:text-xl">
           Nurturing Minds, Building Futures. Discover a place where learning comes alive.
         </p>
         <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 mt-4">
-          <Link href="/register">Register Now</Link>
+          <Link href="/#contact">Contact Admin</Link>
         </Button>
       </div>
     </section>

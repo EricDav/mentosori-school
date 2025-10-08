@@ -1,16 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 import Image from 'next/image';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
-  { href: '/#news', label: 'News' },
+  { 
+    href: '/about', 
+    label: 'About Us',
+    subLinks: [
+      { href: '/about/preparatory', label: 'Preparatory' },
+      { href: '/about/nursery', label: 'Nursery' },
+      { href: '/about/primary', label: 'Primary' },
+    ]
+  },
+  { href: '/#news', label: 'News and Events' },
   { href: '/#contact', label: 'Contact' },
   { href: '/register', label: 'Register' },
   { href: '/admin/content-tool', label: 'Admin' },
@@ -18,6 +34,7 @@ const navLinks = [
 
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -32,15 +49,33 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-bold">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-foreground/60 transition-colors hover:text-foreground/80"
-            >
-              {link.label}
-            </Link>
+            link.subLinks ? (
+              <DropdownMenu key={link.label}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className={cn("text-foreground/60 transition-colors hover:text-foreground/80 font-bold", (pathname.startsWith(link.href) || link.subLinks.some(sl => pathname === sl.href)) && "text-foreground/90")}>
+                    {link.label}
+                    <ChevronDown className="relative top-[1px] ml-1 h-4 w-4 transition duration-200 group-data-[state=open]:rotate-180" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {link.subLinks.map((subLink) => (
+                    <DropdownMenuItem key={subLink.href} asChild>
+                      <Link href={subLink.href}>{subLink.label}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-foreground/60 transition-colors hover:text-foreground/80"
+              >
+                {link.label}
+              </Link>
+            )
           ))}
         </nav>
 
@@ -52,7 +87,7 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
-            <nav className="grid gap-6 text-lg font-medium mt-8">
+            <nav className="grid gap-6 text-lg font-bold mt-8">
               <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setSheetOpen(false)}>
                  <Image
                     src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
@@ -63,7 +98,7 @@ export default function Header() {
                   />
               </Link>
               {navLinks.map((link) => (
-                <Link
+                 <Link
                   key={link.href}
                   href={link.href}
                   className="text-muted-foreground transition-colors hover:text-foreground"

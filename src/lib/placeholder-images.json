@@ -8,15 +8,15 @@
     },
     {
       "id": "gallery-1",
-      "description": "Students collaborating on a science project.",
-      "imageUrl": "https://images.unsplash.com/photo-1758685848895-e724272475d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdHVkZW50cyUyMHNjaWVuY2V8ZW58MHx8fHwxNzU5NDQ5MTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "students science"
+      "description": "Children playing with blocks",
+      "imageUrl": "https://res.cloudinary.com/dbczzmftw/image/upload/v1759905343/kitqcitgqhvchvfmb43j.jpg",
+      "imageHint": "children playing"
     },
     {
       "id": "gallery-2",
-      "description": "School basketball team celebrating a victory.",
-      "imageUrl": "https://images.unsplash.com/photo-1706841533873-2591728aec25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiYXNrZXRiYWxsJTIwdGVhbXxlbnwwfHx8fDE3NTk0MzQ3NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "basketball team"
+      "description": "Child focused on a learning activity",
+      "imageUrl": "https://res.cloudinary.com/dbczzmftw/image/upload/v1759905382/zd7freoo3tbj3t3hypi2.jpg",
+      "imageHint": "child learning"
     },
     {
       "id": "gallery-3",
