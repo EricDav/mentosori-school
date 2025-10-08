@@ -56,35 +56,59 @@ export default function GallerySection() {
         </div>
 
         {loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <div key={index} className="p-1">
-                <Skeleton className="w-full h-full aspect-video" />
-              </div>
-            ))}
-          </div>
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+            className="w-full max-w-4xl mx-auto"
+          >
+            <CarouselContent>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Skeleton className="aspect-video w-full" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         )}
         
         {error && <p className="text-center text-red-500">{error}</p>}
 
         {!loading && !error && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {images.map((image) => (
-              <div key={image.id} className="p-1">
-                <Card className="overflow-hidden">
-                  <CardContent className="flex aspect-video items-center justify-center p-0">
-                    <Image
-                      src={image.imageUrl}
-                      alt={`Gallery image ${image.id}`}
-                      width={600}
-                      height={400}
-                      className="w-full h-full object-cover"
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
+            <Carousel
+                opts={{
+                    align: 'start',
+                    loop: true,
+                }}
+                className="w-full max-w-6xl mx-auto"
+            >
+                <CarouselContent>
+                    {images.map((image) => (
+                        <CarouselItem key={image.id} className="md:basis-1/2 lg:basis-1/3">
+                            <div className="p-1">
+                                <Card className="overflow-hidden">
+                                    <CardContent className="flex aspect-video items-center justify-center p-0">
+                                        <Image
+                                            src={image.imageUrl}
+                                            alt={`Gallery image ${image.id}`}
+                                            width={600}
+                                            height={400}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+            </Carousel>
         )}
       </div>
     </section>
