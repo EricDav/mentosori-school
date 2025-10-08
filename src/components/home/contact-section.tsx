@@ -49,7 +49,7 @@ export default function ContactSection() {
                 <h3 className="font-semibold">Self-Starters House Montessori</h3>
                 <p className="text-muted-foreground">35 Akintan Street, Surulere, Lagos</p>
                 <p className="text-muted-foreground">Email: contact@selfstartershouse.edu</p>
-                <p className="text-muted-foreground">Phone: (123) 456-7890</p>
+                <p className="text-muted-foreground">Phone: 0813 734 2917, 0802 070 2832, 07034554121</p>
             </div>
           </div>
           <Card>
