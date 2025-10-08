@@ -14,6 +14,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -71,7 +77,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground/60 transition-colors hover:text-foreground/80"
+                className="text-foreground/60 transition-colors hover:text-foreground/80 font-bold"
               >
                 {link.label}
               </Link>
@@ -98,14 +104,37 @@ export default function Header() {
                   />
               </Link>
               {navLinks.map((link) => (
-                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  onClick={() => setSheetOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                link.subLinks ? (
+                  <Collapsible key={link.label}>
+                    <CollapsibleTrigger className="flex items-center justify-between w-full text-muted-foreground transition-colors hover:text-foreground group">
+                      {link.label}
+                      <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="grid gap-4 pl-6 pt-4">
+                        {link.subLinks.map((subLink) => (
+                          <Link
+                            key={subLink.href}
+                            href={subLink.href}
+                            className="text-muted-foreground transition-colors hover:text-foreground"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            {subLink.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    onClick={() => setSheetOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </nav>
           </SheetContent>
