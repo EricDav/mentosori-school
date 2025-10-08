@@ -5,18 +5,21 @@ import { Button } from '../ui/button';
 
 const newsItems = [
   {
+    id: 'school-journey',
     title: 'Self-starters House Montessori School: A Journey of Excellence',
     date: 'October 1, 2023',
     category: 'School History',
     description: 'Self-starters House Montessori School started on 28th September 2008 in number 35 Akintan street Surulere, Lagos. Self-starters House Montessori School is a quality school where children are bound to receive excellent program through the year.',
   },
   {
+    id: 'vision-future',
     title: 'Our Vision for the Future',
     date: 'September 20, 2023',
     category: 'Future Plans',
     description: 'We strive to be one of the best nursery/primary schools in Nigeria by the year 2035 and one of the leading educational institutions in West Africa, delivering a world-class and well-rounded education by the year 2040.',
   },
   {
+    id: 'dynamic-world',
     title: 'Preparing Children for a Dynamic World',
     date: 'September 15, 2023',
     category: 'Education Philosophy',
@@ -41,25 +44,25 @@ export default function NewsSection() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {newsItems.map((item) => (
             <Card key={item.title} className="flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
-                  <Badge variant="outline" className="ml-4 shrink-0">{item.category}</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground pt-1">{item.date}</p>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </CardContent>
+              <div>
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
+                    <Badge variant="outline" className="ml-4 shrink-0">{item.category}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground pt-1">{item.date}</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
+                </CardContent>
+              </div>
+              <div className="p-6 pt-0">
+                <Link href={`/news/${item.id}`} className="text-sm font-semibold text-accent hover:underline">
+                  View More
+                </Link>
+              </div>
             </Card>
           ))}
-        </div>
-        <div className="text-center mt-12">
-            <Button asChild className="bg-accent hover:bg-accent/90">
-                <Link href="/admin/content-tool">
-                    Generate More News
-                </Link>
-            </Button>
         </div>
       </div>
     </section>
