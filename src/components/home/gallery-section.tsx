@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
+import Autoplay from "embla-carousel-autoplay"
 
 interface GalleryImage {
   id: number;
@@ -21,6 +22,10 @@ export default function GallerySection() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
 
   useEffect(() => {
     async function fetchGalleries() {
@@ -81,11 +86,14 @@ export default function GallerySection() {
 
         {!loading && !error && (
             <Carousel
+                plugins={[plugin.current]}
                 opts={{
                     align: 'start',
                     loop: true,
                 }}
                 className="w-full max-w-6xl mx-auto"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
             >
                 <CarouselContent>
                     {images.map((image) => (
