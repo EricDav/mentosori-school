@@ -27,9 +27,9 @@ const navLinks = [
     href: '/about', 
     label: 'About Us',
     subLinks: [
-      { href: '/about/preparatory', label: 'Preparatory' },
-      { href: '/about/nursery', label: 'Nursery' },
-      { href: '/about/primary', label: 'Primary' },
+      { href: '/about#preparatory', label: 'Preparatory' },
+      { href: '/about#nursery-primary', label: 'Nursery' },
+      { href: '/about#nursery-primary', label: 'Primary' },
     ]
   },
   { href: '/#news', label: 'News and Events' },
@@ -106,7 +106,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 link.subLinks ? (
                   <Collapsible key={link.label}>
-                    <CollapsibleTrigger className="flex items-center justify-between w-full text-muted-foreground transition-colors hover:text-foreground group">
+                    <CollapsibleTrigger className="flex items-center justify-between w-full text-muted-foreground transition-colors hover:text-foreground group font-bold">
                       {link.label}
                       <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
                     </CollapsibleTrigger>
@@ -129,7 +129,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-muted-foreground transition-colors hover:text-foreground font-bold"
                     onClick={() => setSheetOpen(false)}
                   >
                     {link.label}
