@@ -109,7 +109,7 @@ export default function AboutContent() {
                 <p className="text-sm text-muted-foreground">We are committed to holistic development and to harnessing the potential of the child; by providing a distinctive rounded education of uniformly high quality, in a Montessori prepared environment.</p>
               </CardContent>
             </Card>
-             <Card id="preparatory" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
+            <Card id="preparatory" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
               <CardHeader>
                 <CardTitle className="font-headline">Preparatory Class</CardTitle>
               </CardHeader>
