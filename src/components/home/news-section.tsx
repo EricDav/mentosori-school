@@ -5,11 +5,12 @@ import { Button } from '../ui/button';
 
 const newsItems = [
   {
-    id: 'school-journey',
-    title: 'Self-starters House Montessori School: A Journey of Excellence',
-    date: 'October 1, 2023',
-    category: 'School History',
-    description: 'Self-starters House Montessori School started on 28th September 2008 in number 35 Akintan street Surulere, Lagos. Self-starters House Montessori School is a quality school where children are bound to receive excellent program through the year.',
+    id: 'school-calendar',
+    title: 'School Calendar 2025-2026',
+    date: 'September 1, 2025',
+    category: 'Academics',
+    description: 'Upcoming events for the 2025-2026 school year, including resumption, holidays, tests, and more.',
+    href: '/news/school-calendar',
   },
   {
     id: 'vision-future',
@@ -17,13 +18,15 @@ const newsItems = [
     date: 'September 20, 2023',
     category: 'Future Plans',
     description: 'We strive to be one of the best nursery/primary schools in Nigeria by the year 2035 and one of the leading educational institutions in West Africa, delivering a world-class and well-rounded education by the year 2040.',
+    href: '/news/vision-future',
   },
   {
     id: 'dynamic-world',
     title: 'Preparing Children for a Dynamic World',
     date: 'September 15, 2023',
     category: 'Education Philosophy',
-    description: 'For children to be able to think out of the box, early childhood is the best time to start. We need to produce children who are thinkers. Most of the jobs in existence today were not in existence ten or twenty years ago. Children need to be prepared for a dynamic world where things are always changing.',
+    description: 'For children to be able to think out of the box, early childhood is the best time to start. We need to produce children who are thinkers. Most of the jobs in existence today were not in existence ten or twenty years ago.',
+    href: '/news/dynamic-world',
   },
 ];
 
@@ -57,7 +60,7 @@ export default function NewsSection() {
                 </CardContent>
               </div>
               <div className="p-6 pt-0">
-                <Link href={`/news/${item.id}`} className="text-sm font-semibold text-accent hover:underline">
+                <Link href={item.href} className="text-sm font-semibold text-accent hover:underline">
                   View More
                 </Link>
               </div>
