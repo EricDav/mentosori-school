@@ -74,12 +74,21 @@ export default function AboutContent() {
                 <p className="text-sm text-muted-foreground">Children learn better when they are physically and emotionally secure. The early years are the most crucial time in a child's life when nature has bestowed on the child natural gifts that can help him reach his highest potential. These gifts, however, may be lost forever if the child is not in an environment where these innate abilities can be harnessed. For children to be able to think out of the box, early childhood is the best time to start. We need to produce children who are thinkers. Most of the jobs in existence today were not in existence ten years or twenty years ago. Children need to be prepared for a dynamic world where things are always changing.</p>
               </CardContent>
             </Card>
-             <Card id="preparatory" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
+            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
               <CardHeader>
-                <CardTitle className="font-headline">Preparatory Class</CardTitle>
+                <CardTitle className="font-headline">Our Commitments</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">Our preparatory class is our foundation class for every child. That’s why we have developed our curriculum that combines academic, social-emotional and spiritual elements to provide a solid foundation for young children as they prepare for their future. Our program is designed for children between the ages of 18 months and 5 years.</p>
+                <Accordion type="single" collapsible className="w-full">
+                  {commitments.map((commitment, index) => (
+                    <AccordionItem key={index} value={`item-${index}`}>
+                      <AccordionTrigger className="text-sm">{commitment}</AccordionTrigger>
+                      <AccordionContent>
+                        We are dedicated to fostering this aspect of your child's growth.
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </CardContent>
             </Card>
           </div>
@@ -100,21 +109,12 @@ export default function AboutContent() {
                 <p className="text-sm text-muted-foreground">We are committed to holistic development and to harnessing the potential of the child; by providing a distinctive rounded education of uniformly high quality, in a Montessori prepared environment.</p>
               </CardContent>
             </Card>
-            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+             <Card id="preparatory" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
               <CardHeader>
-                <CardTitle className="font-headline">Our Commitments</CardTitle>
+                <CardTitle className="font-headline">Preparatory Class</CardTitle>
               </CardHeader>
               <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  {commitments.map((commitment, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-sm">{commitment}</AccordionTrigger>
-                      <AccordionContent>
-                        We are dedicated to fostering this aspect of your child's growth.
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+                <p className="text-sm text-muted-foreground">Our preparatory class is our foundation class for every child. That’s why we have developed our curriculum that combines academic, social-emotional and spiritual elements to provide a solid foundation for young children as they prepare for their future. Our program is designed for children between the ages of 18 months and 5 years.</p>
               </CardContent>
             </Card>
             <Card id="nursery-primary" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
