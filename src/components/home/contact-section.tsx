@@ -9,6 +9,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -18,6 +20,7 @@ const formSchema = z.object({
 
 export default function ContactSection() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,13 +30,35 @@ export default function ContactSection() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: 'Message Sent!',
-      description: "Thank you for contacting us. We'll get back to you shortly.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message. Please try again later.');
+      }
+
+      toast({
+        title: 'Message Sent!',
+        description: "Thank you for contacting us. We'll get back to you shortly.",
+      });
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error instanceof Error ? error.message : 'An unknown error occurred.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -98,7 +123,8 @@ export default function ContactSection() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-accent hover:bg-accent/90">
+                  <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={isSubmitting}>
+                    {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Send Message
                   </Button>
                 </form>
