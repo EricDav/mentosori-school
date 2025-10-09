@@ -10,6 +10,9 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '../ui/textarea';
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   studentFirstName: z.string().min(1, 'First name is required'),
@@ -20,10 +23,12 @@ const formSchema = z.object({
   parentLastName: z.string().min(1, "Parent's last name is required"),
   parentEmail: z.string().email('Invalid email address'),
   parentPhone: z.string().min(1, 'Phone number is required'),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
 
 export default function RegistrationForm() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,16 +40,52 @@ export default function RegistrationForm() {
       parentLastName: '',
       parentEmail: '',
       parentPhone: '',
+      message: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: 'Registration Submitted!',
-      description: 'Your application has been received. We will be in touch with the next steps.',
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    const payload = {
+      firstName: values.studentFirstName,
+      lastName: values.studentLastName,
+      subject: values.subject,
+      email: values.parentEmail,
+      parentLastName: values.parentLastName,
+      parentFirstName: values.parentFirstName,
+      phone: values.parentPhone,
+      dateOfBirth: values.dateOfBirth,
+      message: values.message,
+    };
+
+    try {
+      const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/registers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'An unknown error occurred.' }));
+        throw new Error(errorData.message || 'Failed to submit registration. Please try again.');
+      }
+
+      toast({
+        title: 'Registration Submitted!',
+        description: 'Your application has been received. We will be in touch with the next steps.',
+      });
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error instanceof Error ? error.message : 'An unknown error occurred.',
+      });
+    } finally {
+        setIsSubmitting(false);
+    }
   }
 
   return (
@@ -136,8 +177,28 @@ export default function RegistrationForm() {
               </div>
             </div>
 
-            <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90">
-              Submit Application
+            <Separator />
+
+            <div>
+                 <h3 className="text-lg font-medium font-headline mb-4">Additional Message</h3>
+                <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Any additional information..." {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+            </div>
+
+
+            <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90" disabled={isSubmitting}>
+              {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Submit Application'}
             </Button>
           </form>
         </Form>
