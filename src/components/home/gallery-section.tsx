@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +11,8 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 interface GalleryImage {
   id: number;
@@ -99,17 +100,35 @@ export default function GallerySection() {
                     {images.map((image) => (
                         <CarouselItem key={image.id} className="md:basis-1/2 lg:basis-1/3">
                             <div className="p-1">
+                               <Dialog>
                                 <Card className="overflow-hidden">
-                                    <CardContent className="flex aspect-video items-center justify-center p-0">
-                                        <Image
-                                            src={image.imageUrl}
-                                            alt={`Gallery image ${image.id}`}
-                                            width={600}
-                                            height={400}
-                                            className="w-full h-full object-cover"
-                                        />
+                                     <CardHeader>
+                                        <CardTitle className="font-headline text-lg truncate">Campus Moment {image.id}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="p-0">
+                                         <DialogTrigger asChild>
+                                            <div className="cursor-pointer aspect-video">
+                                                <Image
+                                                    src={image.imageUrl}
+                                                    alt={`Gallery image ${image.id}`}
+                                                    width={600}
+                                                    height={400}
+                                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                                                />
+                                            </div>
+                                        </DialogTrigger>
                                     </CardContent>
                                 </Card>
+                                 <DialogContent className="max-w-3xl p-0">
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={`Gallery image ${image.id}`}
+                                        width={1200}
+                                        height={800}
+                                        className="w-full h-auto object-contain rounded-lg"
+                                    />
+                                </DialogContent>
+                               </Dialog>
                             </div>
                         </CarouselItem>
                     ))}
