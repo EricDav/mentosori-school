@@ -5,6 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut } from 'lucide-react';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardLayout({
   children,
@@ -37,14 +38,17 @@ export default function DashboardLayout({
     <SidebarProvider>
       <Sidebar>
           <SidebarHeader>
-             <div className="flex items-center gap-2 p-2">
-                 <Image
-                    src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
-                    alt="Logo"
-                    width={150}
-                    height={40}
-                  />
-                <SidebarTrigger className="ml-auto" />
+             <div className="flex items-center justify-between p-2">
+                 <Button variant="ghost" size="icon" asChild>
+                    <Image
+                        src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
+                        alt="Logo"
+                        width={150}
+                        height={40}
+                        className='p-1'
+                    />
+                 </Button>
+                <SidebarTrigger />
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -63,7 +67,7 @@ export default function DashboardLayout({
               ))}
             </SidebarMenu>
           </SidebarContent>
-           <SidebarFooter>
+           <SidebarFooter className="mt-auto">
              <SidebarMenu>
                  <SidebarMenuItem>
                      <SidebarMenuButton onClick={handleLogout}>

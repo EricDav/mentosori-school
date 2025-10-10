@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between space-y-4 text-center md:flex-row md:space-y-0">
           <div className="flex items-center gap-2">
             <Image
-              src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+              src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
               alt="Self-Starters House Montessori Logo"
               width={150}
               height={50}

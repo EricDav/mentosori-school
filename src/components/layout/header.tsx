@@ -47,7 +47,7 @@ export default function Header() {
       <div className="container flex h-20 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center h-full py-2">
           <Image
-            src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+            src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
             alt="Self-Starters House Montessori Logo"
             width={150}
             height={80}
@@ -96,7 +96,7 @@ export default function Header() {
             <nav className="grid gap-6 text-lg font-bold mt-8">
               <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setSheetOpen(false)}>
                  <Image
-                    src="https://res.cloudinary.com/dbczzmftw/image/upload/v1759502804/iwwqxsmjuyvyeoxdlgxm.png"
+                    src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
                     alt="Self-Starters House Montessori Logo"
                     width={120}
                     height={40}
