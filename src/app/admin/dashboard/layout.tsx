@@ -1,6 +1,6 @@
 'use client';
 
-import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset, SidebarFooter } from '@/components/ui/sidebar';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut } from 'lucide-react';
@@ -63,7 +63,7 @@ export default function DashboardLayout({
               ))}
             </SidebarMenu>
           </SidebarContent>
-           <SidebarHeader>
+           <SidebarFooter>
              <SidebarMenu>
                  <SidebarMenuItem>
                      <SidebarMenuButton onClick={handleLogout}>
@@ -72,7 +72,7 @@ export default function DashboardLayout({
                      </SidebarMenuButton>
                  </SidebarMenuItem>
              </SidebarMenu>
-           </SidebarHeader>
+           </SidebarFooter>
       </Sidebar>
       <SidebarInset>
         <div className="p-4 md:p-8">
