@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { User, Mail, Phone, Calendar, MessageSquare } from 'lucide-react';
+import { User, Mail, Phone, Calendar } from 'lucide-react';
 
 interface Registration {
   id: number;
@@ -87,7 +87,7 @@ export default function RegistrationsPage() {
         )}
 
         {!loading && !error && (
-          <div className="border rounded-md">
+          <div className="border rounded-md overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -104,13 +104,13 @@ export default function RegistrationsPage() {
                 {registrations.length > 0 ? (
                   registrations.map((reg) => (
                     <TableRow key={reg.id}>
-                      <TableCell className="font-medium">{reg.firstName} {reg.lastName}</TableCell>
-                      <TableCell>{new Date(reg.dateOfBirth).toLocaleDateString()}</TableCell>
-                      <TableCell>{reg.parentFirstName} {reg.parentLastName}</TableCell>
+                      <TableCell className="font-medium whitespace-nowrap">{reg.firstName} {reg.lastName}</TableCell>
+                      <TableCell className="whitespace-nowrap">{new Date(reg.dateOfBirth).toLocaleDateString()}</TableCell>
+                      <TableCell className="whitespace-nowrap">{reg.parentFirstName} {reg.parentLastName}</TableCell>
                       <TableCell>{reg.email}</TableCell>
                       <TableCell>{reg.phone}</TableCell>
                       <TableCell>{reg.subject}</TableCell>
-                      <TableCell>{new Date(reg.createdAt).toLocaleDateString()}</TableCell>
+                      <TableCell className="whitespace-nowrap">{new Date(reg.createdAt).toLocaleDateString()}</TableCell>
                     </TableRow>
                   ))
                 ) : (

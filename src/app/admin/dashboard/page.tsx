@@ -26,9 +26,9 @@ const statCards = [
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
-      <div className="p-8 rounded-lg bg-gradient-to-br from-primary to-accent/80 text-primary-foreground shadow-lg">
-        <h1 className="font-headline text-4xl font-bold tracking-tight sm:text-5xl">Admin Dashboard</h1>
-        <p className="mt-4 text-primary-foreground/80 md:text-xl">Welcome back! Manage your school's content from here.</p>
+      <div className="p-6 md:p-8 rounded-lg bg-gradient-to-br from-primary to-accent/80 text-primary-foreground shadow-lg">
+        <h1 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl">Admin Dashboard</h1>
+        <p className="mt-4 text-base text-primary-foreground/80 md:text-xl">Welcome back! Manage your school's content from here.</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

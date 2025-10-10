@@ -81,7 +81,7 @@ export default function ContactsPage() {
         )}
 
         {!loading && !error && (
-          <div className="border rounded-md">
+          <div className="border rounded-md overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -95,10 +95,10 @@ export default function ContactsPage() {
                 {contacts.length > 0 ? (
                   contacts.map((contact) => (
                     <TableRow key={contact.id}>
-                      <TableCell className="font-medium">{contact.name}</TableCell>
+                      <TableCell className="font-medium whitespace-nowrap">{contact.name}</TableCell>
                       <TableCell>{contact.email}</TableCell>
                       <TableCell className="max-w-xs truncate">{contact.message}</TableCell>
-                      <TableCell>{new Date(contact.createdAt).toLocaleDateString()}</TableCell>
+                      <TableCell className="whitespace-nowrap">{new Date(contact.createdAt).toLocaleDateString()}</TableCell>
                     </TableRow>
                   ))
                 ) : (
