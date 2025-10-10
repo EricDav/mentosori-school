@@ -17,6 +17,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 interface GalleryImage {
   id: number;
   imageUrl: string;
+  title: string;
 }
 
 export default function GallerySection() {
@@ -103,7 +104,7 @@ export default function GallerySection() {
                                <Dialog>
                                 <Card className="overflow-hidden">
                                      <CardHeader>
-                                        <CardTitle className="font-headline text-lg truncate">Campus Moment {image.id}</CardTitle>
+                                        <CardTitle className="font-headline text-lg truncate">{image.title}</CardTitle>
                                     </CardHeader>
                                     <CardContent className="p-0">
                                          <DialogTrigger asChild>
