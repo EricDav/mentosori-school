@@ -37,7 +37,7 @@ export default function RegistrationsPage() {
           throw new Error('Authentication token not found.');
         }
 
-        const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/registers', {
+        const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/registers', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },

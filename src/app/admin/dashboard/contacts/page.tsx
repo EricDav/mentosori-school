@@ -31,7 +31,7 @@ export default function ContactsPage() {
           throw new Error('Authentication token not found.');
         }
 
-        const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/contacts', {
+        const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/contacts', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
