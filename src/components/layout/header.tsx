@@ -35,7 +35,7 @@ const navLinks = [
   { href: '/#news', label: 'News and Events' },
   { href: '/#contact', label: 'Contact' },
   { href: '/register', label: 'Register' },
-  { href: '/admin/content-tool', label: 'Admin' },
+  { href: '/admin/login', label: 'Admin' },
 ];
 
 export default function Header() {
@@ -77,7 +77,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground/60 transition-colors hover:text-foreground/80 font-bold"
+                className={cn("text-foreground/60 transition-colors hover:text-foreground/80 font-bold", pathname === link.href && "text-foreground")}
               >
                 {link.label}
               </Link>
