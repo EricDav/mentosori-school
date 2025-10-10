@@ -31,7 +31,6 @@ export default function DashboardLayout({
     { href: '/admin/dashboard/registrations', label: 'Registrations', icon: Users },
     { href: '/admin/dashboard/contacts', label: 'Contacts', icon: BookCopy },
     { href: '/admin/dashboard/news', label: 'News', icon: Newspaper },
-    { href: '/admin/content-tool', label: 'AI Content Tool', icon: Newspaper },
   ];
 
   return (
