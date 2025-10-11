@@ -106,7 +106,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 link.subLinks ? (
                   <Collapsible key={link.label}>
-                    <CollapsibleTrigger className="flex items-center justify-between w-full text-muted-foreground transition-colors hover:text-foreground group font-bold">
+                    <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-bold text-muted-foreground transition-colors hover:text-foreground group">
                       {link.label}
                       <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
                     </CollapsibleTrigger>
@@ -129,7 +129,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground font-bold"
+                    className="font-bold text-muted-foreground transition-colors hover:text-foreground"
                     onClick={() => setSheetOpen(false)}
                   >
                     {link.label}
