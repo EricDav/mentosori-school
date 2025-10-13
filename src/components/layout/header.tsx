@@ -32,10 +32,10 @@ const navLinks = [
       { href: '/about#nursery-primary', label: 'Primary' },
     ]
   },
+  { href: '/#new-gallery', label: 'Gallery' },
   { href: '/#news', label: 'News and Events' },
   { href: '/#contact', label: 'Contact' },
   { href: '/register', label: 'Register' },
-  { href: '/admin/login', label: 'Admin' },
 ];
 
 export default function Header() {
