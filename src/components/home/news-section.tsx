@@ -1,7 +1,17 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+'use client';
+
+import { useRef } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 const newsItems = [
   {
@@ -31,6 +41,8 @@ const newsItems = [
 ];
 
 export default function NewsSection() {
+    const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+
   return (
     <section id="news" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6">
@@ -44,29 +56,46 @@ export default function NewsSection() {
             </p>
           </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {newsItems.map((item) => (
-            <Card key={item.title} className="flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-              <div>
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
-                    <Badge variant="outline" className="ml-4 shrink-0">{item.category}</Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground pt-1">{item.date}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
-                </CardContent>
-              </div>
-              <div className="p-6 pt-0">
-                <Link href={item.href} className="text-sm font-semibold text-accent hover:underline">
-                  View More
-                </Link>
-              </div>
-            </Card>
-          ))}
-        </div>
+        <Carousel
+            plugins={[plugin.current]}
+            opts={{
+                align: 'start',
+                loop: true,
+            }}
+            className="w-full max-w-6xl mx-auto"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+        >
+            <CarouselContent>
+            {newsItems.map((item) => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                        <Card className="flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full">
+                        <div>
+                            <CardHeader>
+                            <div className="flex justify-between items-start">
+                                <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
+                                <Badge variant="outline" className="ml-4 shrink-0">{item.category}</Badge>
+                            </div>
+                            <p className="text-sm text-muted-foreground pt-1">{item.date}</p>
+                            </CardHeader>
+                            <CardContent>
+                            <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
+                            </CardContent>
+                        </div>
+                        <div className="p-6 pt-0">
+                            <Link href={item.href} className="text-sm font-semibold text-accent hover:underline">
+                            View More
+                            </Link>
+                        </div>
+                        </Card>
+                    </div>
+                </CarouselItem>
+            ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
