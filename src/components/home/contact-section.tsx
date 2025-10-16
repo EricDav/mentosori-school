@@ -73,7 +73,7 @@ export default function ContactSection() {
             <div className="space-y-2">
                 <h3 className="font-semibold">Self-Starters House Montessori</h3>
                 <p className="text-muted-foreground">30 Ibezim Obiajulu street Off Alh. Masha Road Surulere Lagos.</p>
-                <p className="text-muted-foreground">Email: contact@selfstartershouse.com</p>
+                <p className="text-muted-foreground">Email: contact@selfstartersschool.com</p>
                 <p className="text-muted-foreground">Phone: 0813 734 2917, 0802 070 2832, 07034554121</p>
             </div>
           </div>
