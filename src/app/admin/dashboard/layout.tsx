@@ -38,16 +38,7 @@ export default function DashboardLayout({
     <SidebarProvider>
       <Sidebar>
           <SidebarHeader>
-             <div className="flex items-center justify-between p-2">
-                 <div className="w-[150px] h-10 flex items-center">
-                   <Image
-                      src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
-                      alt="Self-Starters House Montessori Logo"
-                      width={150}
-                      height={40}
-                      className="object-contain"
-                    />
-                 </div>
+             <div className="flex items-center justify-end p-2">
                 <SidebarTrigger />
             </div>
           </SidebarHeader>
