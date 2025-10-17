@@ -19,7 +19,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
 interface GalleryImage {
@@ -35,6 +34,8 @@ export default function GalleryPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const { toast } = useToast();
+  const [imageToDelete, setImageToDelete] = useState<GalleryImage | null>(null);
+
 
   const fetchGallery = useCallback(async () => {
     try {
@@ -63,32 +64,10 @@ export default function GalleryPage() {
     fetchGallery();
   }, [fetchGallery]);
 
-  const handleAddImage = async (values: { title: string; imageUrl: string }) => {
-    try {
-      const token = localStorage.getItem('auth-token');
-      if (!token) throw new Error('Authentication token not found.');
-
-      const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/gallery', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (!response.ok) {
-         const errorData = await response.json();
-         throw new Error(errorData.message || 'Failed to add image.');
-      }
-      
-      toast({ title: 'Success!', description: 'New image added to the gallery.' });
-      fetchGallery(); // Refresh the gallery
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred.';
-      toast({ variant: 'destructive', title: 'Error adding image', description: errorMessage });
-    }
-  };
+  const handleFormFinished = () => {
+      setIsFormOpen(false);
+      fetchGallery();
+  }
 
   const handleDeleteImage = async (id: number) => {
     setDeletingId(id);
@@ -110,6 +89,7 @@ export default function GalleryPage() {
       toast({ variant: 'destructive', title: 'Error deleting image', description: errorMessage });
     } finally {
         setDeletingId(null);
+        setImageToDelete(null);
     }
   };
 
@@ -131,7 +111,7 @@ export default function GalleryPage() {
             <DialogHeader>
               <DialogTitle>Add New Gallery Image</DialogTitle>
             </DialogHeader>
-            <GalleryForm onSubmit={handleAddImage} onFinished={() => setIsFormOpen(false)} />
+            <GalleryForm onFinished={handleFormFinished} />
           </DialogContent>
         </Dialog>
       </CardHeader>
@@ -169,30 +149,14 @@ export default function GalleryPage() {
                      <p className="font-medium truncate">{image.title}</p>
                   </CardContent>
                   <CardFooter className="p-4 pt-0">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="destructive" className="w-full" disabled={deletingId === image.id}>
-                          {deletingId === image.id ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          ) : (
-                            <Trash2 className="mr-2 h-4 w-4" />
-                          )}
-                          Delete
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete the image from your gallery.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => handleDeleteImage(image.id)}>Continue</AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                    <Button variant="destructive" className="w-full" disabled={deletingId === image.id} onClick={() => setImageToDelete(image)}>
+                        {deletingId === image.id ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        )}
+                        Delete
+                    </Button>
                   </CardFooter>
                 </Card>
               ))
@@ -204,6 +168,20 @@ export default function GalleryPage() {
           </div>
         )}
       </CardContent>
+       <AlertDialog open={!!imageToDelete} onOpenChange={(open) => !open && setImageToDelete(null)}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete the image from your gallery.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setImageToDelete(null)}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={() => imageToDelete && handleDeleteImage(imageToDelete.id)}>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
     </Card>
   );
 }
