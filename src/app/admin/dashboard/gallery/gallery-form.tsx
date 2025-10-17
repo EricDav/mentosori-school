@@ -52,7 +52,7 @@ export default function GalleryForm({ onFinished }: GalleryFormProps) {
       const formData = new FormData();
       formData.append('file', imageFile);
 
-      const imageUploadResponse = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/products/image', {
+      const imageUploadResponse = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/products/images', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
