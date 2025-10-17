@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, LayoutDashboard, Users, BookCopy, Newspaper, GalleryHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -36,6 +36,14 @@ const navLinks = [
   { href: '/#news', label: 'News and Events' },
   { href: '/#contact', label: 'Contact' },
   { href: '/register', label: 'Register' },
+];
+
+const adminNavLinks = [
+    { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/admin/dashboard/registrations', label: 'Registrations', icon: Users },
+    { href: '/admin/dashboard/contacts', label: 'Contacts', icon: BookCopy },
+    { href: '/admin/dashboard/news', label: 'News', icon: Newspaper },
+    { href: '/admin/dashboard/gallery', label: 'Gallery', icon: GalleryHorizontal },
 ];
 
 export default function Header() {
@@ -136,6 +144,29 @@ export default function Header() {
                   </Link>
                 )
               ))}
+
+                <Collapsible>
+                    <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-bold text-muted-foreground transition-colors hover:text-foreground group">
+                      Admin
+                      <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="grid gap-4 pl-6 pt-4">
+                        {adminNavLinks.map((subLink) => (
+                          <Link
+                            key={subLink.href}
+                            href={subLink.href}
+                            className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <subLink.icon className="h-5 w-5" />
+                            <span>{subLink.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+
             </nav>
           </SheetContent>
         </Sheet>
