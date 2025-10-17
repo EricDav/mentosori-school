@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import type { NewsArticle } from './page';
 
 const formSchema = z.object({
   title: z.string().min(2, { message: 'Title must be at least 2 characters.' }),
@@ -21,11 +21,13 @@ type NewsFormValues = z.infer<typeof formSchema>;
 
 interface NewsFormProps {
     onSubmit: (values: NewsFormValues) => void;
+    onFinished: () => void;
+    article: NewsArticle | null;
 }
 
-export default function NewsForm({ onSubmit }: NewsFormProps) {
-  const { toast } = useToast();
+export default function NewsForm({ onSubmit, onFinished, article }: NewsFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<NewsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,21 +37,27 @@ export default function NewsForm({ onSubmit }: NewsFormProps) {
     },
   });
 
-  function handleFormSubmit(values: NewsFormValues) {
+  useEffect(() => {
+    if (article) {
+        form.reset({
+            title: article.title,
+            date: new Date(article.date).toISOString().split('T')[0],
+            content: article.content,
+        });
+    } else {
+        form.reset({
+            title: '',
+            date: new Date().toISOString().split('T')[0],
+            content: '',
+        });
+    }
+  }, [article, form]);
+
+
+  async function handleFormSubmit(values: NewsFormValues) {
     setIsSubmitting(true);
     try {
-        onSubmit(values);
-        toast({
-            title: 'Success!',
-            description: 'News article has been added.',
-        });
-        form.reset();
-    } catch (error) {
-        toast({
-            variant: 'destructive',
-            title: 'Uh oh! Something went wrong.',
-            description: 'Could not add the news article.',
-        });
+        await onSubmit(values);
     } finally {
         setIsSubmitting(false);
     }
@@ -97,10 +105,15 @@ export default function NewsForm({ onSubmit }: NewsFormProps) {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Add Article
-        </Button>
+        <div className="flex justify-end gap-2">
+            <Button type="button" variant="outline" onClick={onFinished}>
+                Cancel
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {article ? 'Save Changes' : 'Add Article'}
+            </Button>
+        </div>
       </form>
     </Form>
   );
