@@ -3,7 +3,7 @@
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset, SidebarFooter } from '@/components/ui/sidebar';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut } from 'lucide-react';
+import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal } from 'lucide-react';
 import Image from 'next/image';
 
 export default function DashboardLayout({
@@ -31,6 +31,7 @@ export default function DashboardLayout({
     { href: '/admin/dashboard/registrations', label: 'Registrations', icon: Users },
     { href: '/admin/dashboard/contacts', label: 'Contacts', icon: BookCopy },
     { href: '/admin/dashboard/news', label: 'News', icon: Newspaper },
+    { href: '/admin/dashboard/gallery', label: 'Gallery', icon: GalleryHorizontal },
   ];
 
   return (
@@ -38,7 +39,15 @@ export default function DashboardLayout({
       <Sidebar>
           <SidebarHeader>
              <div className="flex items-center justify-between p-2">
-                 <div className="w-[150px] h-10" />
+                 <div className="w-[150px] h-10 flex items-center">
+                   <Image
+                      src="https://res.cloudinary.com/dbczzmftw/image/upload/v1760126571/ec1fjovxmtfwhjwwgjxj.png"
+                      alt="Self-Starters House Montessori Logo"
+                      width={150}
+                      height={40}
+                      className="object-contain"
+                    />
+                 </div>
                 <SidebarTrigger />
             </div>
           </SidebarHeader>
@@ -61,7 +70,7 @@ export default function DashboardLayout({
            <SidebarFooter className="mt-auto">
              <SidebarMenu>
                  <SidebarMenuItem>
-                     <SidebarMenuButton onClick={handleLogout}>
+                     <SidebarMenuButton onClick={handleLogout} tooltip="Logout">
                          <LogOut />
                          <span>Logout</span>
                      </SidebarMenuButton>
