@@ -35,46 +35,50 @@ export default function SchoolCalendarPage() {
           <CardTitle>Academic Calendar</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Event</TableHead>
-                <TableHead>Date</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {calendarEvents.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell className="font-medium">{item.event}</TableCell>
-                  <TableCell>{item.date}</TableCell>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Event</TableHead>
+                  <TableHead>Date</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {calendarEvents.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{item.event}</TableCell>
+                    <TableCell>{item.date}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
         <Card className="mt-8">
             <CardHeader>
                 <CardTitle>Weekly Activities</CardTitle>
-            </CardHeader>
+            </Header>
             <CardContent>
-                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Activity</TableHead>
-                            <TableHead>Schedule</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {weeklyActivities.map((item, index) => (
-                            <TableRow key={index}>
-                                <TableCell className="font-medium">{item.activity}</TableCell>
-                                <TableCell>{item.day}</TableCell>
+                <div className="overflow-x-auto">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Activity</TableHead>
+                                <TableHead>Schedule</TableHead>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                        </TableHeader>
+                        <TableBody>
+                            {weeklyActivities.map((item, index) => (
+                                <TableRow key={index}>
+                                    <TableCell className="font-medium">{item.activity}</TableCell>
+                                    <TableCell>{item.day}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
                 <p className="text-sm text-muted-foreground mt-4">NB: Weekly activities are part of our co-curricular program.</p>
             </CardContent>
         </Card>
