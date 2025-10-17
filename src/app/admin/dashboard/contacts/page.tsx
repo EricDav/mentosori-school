@@ -81,8 +81,8 @@ export default function ContactsPage() {
         )}
 
         {!loading && !error && (
-          <div className="border rounded-md overflow-x-auto">
-            <Table>
+          <div className="w-full border rounded-md overflow-x-auto">
+            <Table className="min-w-full">
               <TableHeader>
                 <TableRow>
                   <TableHead className="whitespace-nowrap"><User className="inline-block mr-2 h-4 w-4" />Name</TableHead>

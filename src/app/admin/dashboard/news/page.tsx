@@ -182,8 +182,8 @@ export default function NewsPage() {
         )}
 
         {!loading && !error && (
-            <div className="border rounded-md overflow-x-auto">
-                <Table>
+            <div className="w-full border rounded-md overflow-x-auto">
+                <Table className="min-w-full">
                     <TableHeader>
                         <TableRow>
                             <TableHead>Title</TableHead>

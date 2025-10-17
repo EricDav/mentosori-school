@@ -35,8 +35,8 @@ export default function SchoolCalendarPage() {
           <CardTitle>Academic Calendar</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <Table>
+          <div className="w-full overflow-x-auto">
+            <Table className="min-w-full">
               <TableHeader>
                 <TableRow>
                   <TableHead>Event</TableHead>
@@ -61,8 +61,8 @@ export default function SchoolCalendarPage() {
                 <CardTitle>Weekly Activities</CardTitle>
             </Header>
             <CardContent>
-                <div className="overflow-x-auto">
-                    <Table>
+                <div className="w-full overflow-x-auto">
+                    <Table className="min-w-full">
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Activity</TableHead>
