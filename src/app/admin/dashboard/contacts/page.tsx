@@ -85,8 +85,8 @@ export default function ContactsPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead><User className="inline-block mr-2 h-4 w-4" />Name</TableHead>
-                  <TableHead><Mail className="inline-block mr-2 h-4 w-4" />Email</TableHead>
+                  <TableHead className="whitespace-nowrap"><User className="inline-block mr-2 h-4 w-4" />Name</TableHead>
+                  <TableHead className="whitespace-nowrap"><Mail className="inline-block mr-2 h-4 w-4" />Email</TableHead>
                   <TableHead><MessageSquare className="inline-block mr-2 h-4 w-4" />Message</TableHead>
                   <TableHead>Date</TableHead>
                 </TableRow>

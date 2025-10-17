@@ -91,11 +91,11 @@ export default function RegistrationsPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead><User className="inline-block mr-2 h-4 w-4" />Student Name</TableHead>
-                  <TableHead><Calendar className="inline-block mr-2 h-4 w-4" />Date of Birth</TableHead>
-                  <TableHead><User className="inline-block mr-2 h-4 w-4" />Parent Name</TableHead>
-                  <TableHead><Mail className="inline-block mr-2 h-4 w-4" />Parent Email</TableHead>
-                  <TableHead><Phone className="inline-block mr-2 h-4 w-4" />Parent Phone</TableHead>
+                  <TableHead className="whitespace-nowrap"><User className="inline-block mr-2 h-4 w-4" />Student Name</TableHead>
+                  <TableHead className="whitespace-nowrap"><Calendar className="inline-block mr-2 h-4 w-4" />Date of Birth</TableHead>
+                  <TableHead className="whitespace-nowrap"><User className="inline-block mr-2 h-4 w-4" />Parent Name</TableHead>
+                  <TableHead className="whitespace-nowrap"><Mail className="inline-block mr-2 h-4 w-4" />Parent Email</TableHead>
+                  <TableHead className="whitespace-nowrap"><Phone className="inline-block mr-2 h-4 w-4" />Parent Phone</TableHead>
                   <TableHead>Subject</TableHead>
                   <TableHead>Date</TableHead>
                 </TableRow>

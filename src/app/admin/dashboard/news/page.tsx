@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { PlusCircle, Edit, Trash2, Loader2 } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import NewsForm from './news-form';
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -199,7 +199,7 @@ export default function NewsPage() {
                                     <TableCell className="font-medium max-w-xs truncate">{article.title}</TableCell>
                                     <TableCell className="whitespace-nowrap">{new Date(article.date).toLocaleDateString()}</TableCell>
                                     <TableCell className="max-w-md truncate">{article.content}</TableCell>
-                                    <TableCell className="text-right space-x-2">
+                                    <TableCell className="text-right space-x-2 whitespace-nowrap">
                                         <Button variant="outline" size="icon" onClick={() => handleOpenDialog(article)}>
                                             <Edit className="h-4 w-4" />
                                         </Button>
