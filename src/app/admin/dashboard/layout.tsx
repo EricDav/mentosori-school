@@ -1,3 +1,4 @@
+
 'use client';
 
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset, SidebarFooter } from '@/components/ui/sidebar';
@@ -44,7 +45,7 @@ export default function DashboardLayout({
       <Sidebar>
           <SidebarHeader>
              <div className="flex items-center justify-end p-2">
-                <SidebarTrigger asChild>
+                <SidebarTrigger>
                   <Button variant="ghost" size="icon">
                     <PanelLeft className="h-6 w-6" />
                   </Button>

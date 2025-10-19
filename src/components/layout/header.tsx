@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -41,7 +42,6 @@ const navLinks = [
 const adminNavLinks = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/dashboard/registrations', label: 'Registrations', icon: Users },
-    { href: '/admin/dashboard/contacts', label: 'Contacts', icon: BookCopy },
     { href: '/admin/dashboard/news', label: 'News', icon: Newspaper },
     { href: '/admin/dashboard/gallery', label: 'Gallery', icon: GalleryHorizontal },
 ];
