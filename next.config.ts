@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'httpshttps',
         hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/**',
@@ -37,7 +37,10 @@ const nextConfig: NextConfig = {
     ],
   },
   // This is to allow cross-origin requests in development.
-  allowedDevOrigins: ["https://*.cloudworkstations.dev"],
+  allowedDevOrigins: [
+    "https://*.cloudworkstations.dev",
+    "https://6000-firebase-studio-1759497056037.cluster-fbfjltn375c6wqxlhoehbz44sk.cloudworkstations.dev"
+  ],
 };
 
 export default nextConfig;
