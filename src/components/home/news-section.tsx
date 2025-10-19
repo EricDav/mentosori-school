@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
   Carousel,
@@ -14,6 +14,8 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Calendar } from 'lucide-react';
 
 interface NewsArticle {
   id: number;
@@ -23,10 +25,13 @@ interface NewsArticle {
   category?: string;
 }
 
+const TRUNCATE_LENGTH = 120; // Show "View More" if description is longer than this
+
 export default function NewsSection() {
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   useEffect(() => {
@@ -40,7 +45,8 @@ export default function NewsSection() {
         const data = await response.json();
         const articles = data.data.map((item: any) => ({
           ...item,
-          content: item.description,
+          id: item.id.toString(), // Ensure id is a string for consistency
+          description: item.description,
         }));
         setNews(articles);
       } catch (err) {
@@ -51,6 +57,14 @@ export default function NewsSection() {
     }
     fetchNews();
   }, []);
+
+  const handleOpenModal = (article: NewsArticle) => {
+    setSelectedArticle(article);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedArticle(null);
+  };
 
   return (
     <section id="news" className="w-full py-12 md:py-24 lg:py-32 bg-background">
@@ -107,6 +121,7 @@ export default function NewsSection() {
         )}
 
         {!loading && !error && news.length > 0 && (
+          <Dialog open={!!selectedArticle} onOpenChange={(isOpen) => !isOpen && handleCloseModal()}>
             <Carousel
                 plugins={[plugin.current]}
                 opts={{
@@ -132,9 +147,17 @@ export default function NewsSection() {
                                     </CardContent>
                                 </div>
                                 <div className="p-6 pt-0">
-                                    <Link href={`/news/${item.id}`} className="text-sm font-semibold text-accent hover:underline">
+                                    {item.description.length > TRUNCATE_LENGTH ? (
+                                      <DialogTrigger asChild>
+                                        <Button variant="link" className="text-sm font-semibold text-accent hover:underline p-0 h-auto" onClick={() => handleOpenModal(item)}>
+                                            View More
+                                        </Button>
+                                      </DialogTrigger>
+                                    ) : (
+                                      <Link href={`/news/${item.id}`} className="text-sm font-semibold text-accent hover:underline">
                                         View More
-                                    </Link>
+                                      </Link>
+                                    )}
                                 </div>
                             </Card>
                         </div>
@@ -144,6 +167,23 @@ export default function NewsSection() {
                 <CarouselPrevious />
                 <CarouselNext />
             </Carousel>
+             {selectedArticle && (
+                <DialogContent className="sm:max-w-[625px]">
+                    <DialogHeader>
+                        <DialogTitle className="font-headline text-2xl font-bold tracking-tight sm:text-3xl">{selectedArticle.title}</DialogTitle>
+                         <div className="flex items-center gap-2 text-muted-foreground pt-2">
+                            <Calendar className="h-4 w-4" />
+                            <time dateTime={selectedArticle.date}>
+                                {new Date(selectedArticle.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            </time>
+                        </div>
+                    </DialogHeader>
+                    <div className="py-4 prose max-w-none">
+                        <p className="text-muted-foreground">{selectedArticle.description}</p>
+                    </div>
+                </DialogContent>
+            )}
+          </Dialog>
         )}
          {!loading && !error && news.length === 0 && (
             <p className="text-center text-muted-foreground">No news articles found.</p>
