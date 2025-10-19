@@ -1,6 +1,5 @@
-import { Twitter, Instagram, Facebook } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -14,14 +13,11 @@ export default function Footer() {
                <Link href="/admin/login" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   Admin
               </Link>
-              <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-              <Twitter className="h-5 w-5" />
+              <Link href="https://www.instagram.com/selfstartershouse_school?utm_source=qr&igsh=MTFkYmlidms1OXZ4dA==" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Instagram className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-              <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-              <Facebook className="h-5 w-5" />
+              <Link href="https://www.facebook.com/share/1CgLdNA9ic/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Facebook className="h-5 w-5" />
               </Link>
           </div>
         </div>
