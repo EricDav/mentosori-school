@@ -4,7 +4,7 @@
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset, SidebarFooter } from '@/components/ui/sidebar';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal, PanelLeft, Menu } from 'lucide-react';
+import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal, PanelLeft, Menu, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -38,6 +38,7 @@ export default function DashboardLayout({
     { href: '/admin/dashboard/registrations', label: 'Registrations', icon: Users },
     { href: '/admin/dashboard/news', label: 'News', icon: Newspaper },
     { href: '/admin/dashboard/gallery', label: 'Gallery', icon: GalleryHorizontal },
+    { href: '/admin/dashboard/calendar', label: 'Calendar', icon: Calendar },
   ];
 
   return (
