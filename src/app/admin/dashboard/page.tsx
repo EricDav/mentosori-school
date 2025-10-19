@@ -10,12 +10,6 @@ const statCards = [
     description: 'View and manage student applications.',
   },
   {
-    title: 'Contacts',
-    icon: BookCopy,
-    href: '/admin/dashboard/contacts',
-    description: 'Read and respond to user messages.',
-  },
-  {
     title: 'News',
     icon: Newspaper,
     href: '/admin/dashboard/news',
