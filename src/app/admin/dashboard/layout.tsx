@@ -7,6 +7,7 @@ import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal,
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Link from 'next/link';
 
 
 export default function DashboardLayout({
@@ -44,8 +45,10 @@ export default function DashboardLayout({
       <Sidebar>
           <SidebarHeader>
              <div className="flex items-center justify-end p-2">
-                <SidebarTrigger>
-                  <PanelLeft className="h-6 w-6" />
+                <SidebarTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <PanelLeft className="h-6 w-6" />
+                  </Button>
                 </SidebarTrigger>
             </div>
           </SidebarHeader>
