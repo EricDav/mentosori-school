@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -12,36 +12,45 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
-const newsItems = [
-  {
-    id: 'school-calendar',
-    title: 'School Calendar 2025-2026',
-    date: 'September 1, 2025',
-    category: 'Academics',
-    description: 'Upcoming events for the 2025-2026 school year, including resumption, holidays, tests, and more.',
-    href: '/news/school-calendar',
-  },
-  {
-    id: 'vision-future',
-    title: 'Our Vision for the Future',
-    date: 'September 20, 2023',
-    category: 'Future Plans',
-    description: 'We strive to be one of the best nursery/primary schools in Nigeria by the year 2035 and one of the leading educational institutions in West Africa, delivering a world-class and well-rounded education by the year 2040.',
-    href: '/news/vision-future',
-  },
-  {
-    id: 'dynamic-world',
-    title: 'Preparing Children for a Dynamic World',
-    date: 'September 15, 2023',
-    category: 'Education Philosophy',
-    description: 'For children to be able to think out of the box, early childhood is the best time to start. We need to produce children who are thinkers. Most of the jobs in existence today were not in existence ten or twenty years ago.',
-    href: '/news/dynamic-world',
-  },
-];
+interface NewsArticle {
+  id: number;
+  title: string;
+  date: string;
+  description: string;
+  category?: string;
+}
 
 export default function NewsSection() {
-    const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const [news, setNews] = useState<NewsArticle[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        setLoading(true);
+        const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/news');
+        if (!response.ok) {
+          throw new Error('Failed to fetch news articles.');
+        }
+        const data = await response.json();
+        const articles = data.data.map((item: any) => ({
+          ...item,
+          content: item.description,
+        }));
+        setNews(articles);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchNews();
+  }, []);
 
   return (
     <section id="news" className="w-full py-12 md:py-24 lg:py-32 bg-background">
@@ -56,46 +65,89 @@ export default function NewsSection() {
             </p>
           </div>
         </div>
-        <Carousel
-            plugins={[plugin.current]}
+
+        {loading && (
+           <Carousel
             opts={{
-                align: 'start',
-                loop: true,
+              align: 'start',
+              loop: true,
             }}
             className="w-full max-w-6xl mx-auto"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
-        >
+          >
             <CarouselContent>
-            {newsItems.map((item) => (
-                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full">
-                        <Card className="flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full">
-                        <div>
-                            <CardHeader>
-                            <div className="flex justify-between items-start">
-                                <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
-                                <Badge variant="outline" className="ml-4 shrink-0">{item.category}</Badge>
-                            </div>
-                            <p className="text-sm text-muted-foreground pt-1">{item.date}</p>
-                            </CardHeader>
-                            <CardContent>
-                            <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
-                            </CardContent>
-                        </div>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                     <Card className="flex flex-col justify-between h-full">
+                        <CardHeader>
+                          <Skeleton className="h-5 w-3/4" />
+                          <Skeleton className="h-4 w-1/4" />
+                        </CardHeader>
+                        <CardContent>
+                           <Skeleton className="h-4 w-full" />
+                           <Skeleton className="h-4 w-full mt-2" />
+                        </CardContent>
                         <div className="p-6 pt-0">
-                            <Link href={item.href} className="text-sm font-semibold text-accent hover:underline">
-                            View More
-                            </Link>
+                            <Skeleton className="h-5 w-20" />
                         </div>
-                        </Card>
-                    </div>
+                      </Card>
+                  </div>
                 </CarouselItem>
-            ))}
+              ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-        </Carousel>
+          </Carousel>
+        )}
+
+        {error && (
+            <Alert variant="destructive" className="max-w-6xl mx-auto">
+                <AlertDescription>{error}</AlertDescription>
+            </Alert>
+        )}
+
+        {!loading && !error && news.length > 0 && (
+            <Carousel
+                plugins={[plugin.current]}
+                opts={{
+                    align: 'start',
+                    loop: true,
+                }}
+                className="w-full max-w-6xl mx-auto"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
+            >
+                <CarouselContent>
+                {news.map((item) => (
+                    <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1 h-full">
+                            <Card className="flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full">
+                                <div>
+                                    <CardHeader>
+                                        <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
+                                        <p className="text-sm text-muted-foreground pt-1">{new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
+                                    </CardContent>
+                                </div>
+                                <div className="p-6 pt-0">
+                                    <Link href={`/news/${item.id}`} className="text-sm font-semibold text-accent hover:underline">
+                                        View More
+                                    </Link>
+                                </div>
+                            </Card>
+                        </div>
+                    </CarouselItem>
+                ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+            </Carousel>
+        )}
+         {!loading && !error && news.length === 0 && (
+            <p className="text-center text-muted-foreground">No news articles found.</p>
+         )}
       </div>
     </section>
   );

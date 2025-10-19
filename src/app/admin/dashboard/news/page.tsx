@@ -43,15 +43,12 @@ export default function NewsPage() {
   const fetchNews = useCallback(async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('auth-token');
-      if (!token) throw new Error("Authentication token not found.");
-      const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/news', {
-         headers: { 'Authorization': `Bearer ${token}` }
-      });
+      const response = await fetch('https://geolocation-ananlysis-cf3b7de3e9c8.herokuapp.com/v1/starter/news');
       if (!response.ok) throw new Error('Failed to fetch news.');
       const data = await response.json();
       const articles = data.data.map((item: any) => ({
         ...item,
+        id: item.id.toString(),
         content: item.description,
       }));
       setNews(articles);
