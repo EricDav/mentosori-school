@@ -4,7 +4,7 @@
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset, SidebarFooter } from '@/components/ui/sidebar';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { BookCopy, Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal, PanelLeft, Menu } from 'lucide-react';
+import { Newspaper, Users, LayoutDashboard, LogOut, GalleryHorizontal, PanelLeft, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
