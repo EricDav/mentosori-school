@@ -2,10 +2,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, ChevronDown, LayoutDashboard, Users, BookCopy, Newspaper, GalleryHorizontal } from 'lucide-react';
+import { Menu, ChevronDown, LayoutDashboard, Users, Newspaper, GalleryHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   DropdownMenu,
@@ -49,6 +49,14 @@ const adminNavLinks = [
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
   const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // This code runs only on the client, after the component has mounted.
+    const token = localStorage.getItem('auth-token');
+    setIsLoggedIn(!!token);
+  }, [pathname]); // Re-check on route change
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -145,6 +153,7 @@ export default function Header() {
                 )
               ))}
 
+              {isLoggedIn && (
                 <Collapsible>
                     <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-bold text-muted-foreground transition-colors hover:text-foreground group">
                       Admin
@@ -166,7 +175,7 @@ export default function Header() {
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
-
+                )}
             </nav>
           </SheetContent>
         </Sheet>
