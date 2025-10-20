@@ -35,6 +35,7 @@ const navLinks = [
   },
   { href: '/#new-gallery', label: 'Gallery' },
   { href: '/#news', label: 'News and Events' },
+  { href: '/#calendar', label: 'Calendar' },
   { href: '/#contact', label: 'Contact' },
   { href: '/register', label: 'Register' },
 ];
