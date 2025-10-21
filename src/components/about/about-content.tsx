@@ -114,7 +114,7 @@ export default function AboutContent() {
                 <CardTitle className="font-headline">Preparatory Class</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">Our preparatory class is our foundation class for every child. That’s why we have developed our curriculum that combines academic, social-emotional and spiritual elements to provide a solid foundation for young children as they prepare for their future. Our program is designed for children between the ages of 18 months and 5 years.</p>
+                <p className="text-sm text-muted-foreground">Our preparatory class is our foundation class for every child. That’s why we have developed our curriculum that combines academic, social-emotional and spiritual elements to provide a solid foundation for young children as they prepare for their future. Our program is designed for children between the ages of 18 months and 3 years.</p>
               </CardContent>
             </Card>
             <Card id="nursery-primary" className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl scroll-mt-20">
