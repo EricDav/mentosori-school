@@ -1,8 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+'use client';
+
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from '@/components/ui/table';
 import { schoolCalendar, weeklyActivities } from '@/lib/calendar-data';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { ScrollArea } from '../ui/scroll-area';
 
 export default function CalendarSection() {
+  const initialCalendar = schoolCalendar.slice(0, 5);
+
   return (
     <section id="calendar" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
@@ -17,11 +31,12 @@ export default function CalendarSection() {
           </div>
         </div>
         <div className="grid gap-12 lg:grid-cols-2">
-            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+           <Dialog>
+            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl flex flex-col">
                 <CardHeader>
                     <CardTitle className="font-headline">Academic Calendar 2025-2026</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
                     <div className="w-full border rounded-md overflow-x-auto">
                         <Table>
                             <TableHeader>
@@ -31,7 +46,7 @@ export default function CalendarSection() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {schoolCalendar.map((event) => (
+                                {initialCalendar.map((event) => (
                                     <TableRow key={event.event}>
                                         <TableCell className="font-medium">{event.event}</TableCell>
                                         <TableCell>{event.date}</TableCell>
@@ -41,7 +56,40 @@ export default function CalendarSection() {
                         </Table>
                     </div>
                 </CardContent>
+                <CardFooter>
+                    <DialogTrigger asChild>
+                        <Button variant="link" className="text-accent font-semibold hover:underline p-0 h-auto">View More</Button>
+                    </DialogTrigger>
+                </CardFooter>
             </Card>
+
+            <DialogContent className="sm:max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle className="font-headline text-2xl">Academic Calendar 2025-2026</DialogTitle>
+                </DialogHeader>
+                <ScrollArea className="h-96">
+                  <div className="w-full border rounded-md overflow-x-auto">
+                      <Table>
+                          <TableHeader>
+                              <TableRow>
+                                  <TableHead>Event</TableHead>
+                                  <TableHead>Date</TableHead>
+                              </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                              {schoolCalendar.map((event) => (
+                                  <TableRow key={event.event}>
+                                      <TableCell className="font-medium">{event.event}</TableCell>
+                                      <TableCell>{event.date}</TableCell>
+                                  </TableRow>
+                              ))}
+                          </TableBody>
+                      </Table>
+                  </div>
+                </ScrollArea>
+            </DialogContent>
+           </Dialog>
+
             <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                 <CardHeader>
                     <CardTitle className="font-headline">Weekly Activities</CardTitle>
