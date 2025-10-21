@@ -122,7 +122,7 @@ export default function AboutContent() {
                 <CardTitle className="font-headline">Nursery & Primary</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">Our experience team understands that growing children need a balance of hand-holding and independence to navigate through life, build the grit they need to and therefore put together a learning program that sparks creativity and innovation in our learners. We run a 6 years program from grades 1 to 6 that prepares students for entrance exams into secondary school as well as get them ready for life.</p>
+                <p className="text-sm text-muted-foreground">Our experienced team understands that growing children need a balance of hand-holding and independence to navigate through life, build the grit they need to and therefore put together a learning program that sparks creativity and innovation in our learners. We run a 6 years program from grades 1 to 6 that prepares students for entrance exams into secondary school as well as get them ready for life.</p>
               </CardContent>
             </Card>
           </div>
