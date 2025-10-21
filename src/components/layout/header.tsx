@@ -33,7 +33,7 @@ const navLinks = [
       { href: '/about#nursery-primary', label: 'Primary' },
     ]
   },
-  { href: '/#new-gallery', label: 'Gallery' },
+  { href: '/#gallery', label: 'Gallery' },
   { href: '/#news', label: 'News and Events' },
   { href: '/#calendar', label: 'Calendar' },
   { href: '/#contact', label: 'Contact' },
