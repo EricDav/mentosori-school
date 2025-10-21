@@ -54,9 +54,10 @@ export default function Header() {
 
   useEffect(() => {
     // This code runs only on the client, after the component has mounted.
+    // This prevents a hydration mismatch.
     const token = localStorage.getItem('auth-token');
     setIsLoggedIn(!!token);
-  }, [pathname]); // Re-check on route change
+  }, []); // Empty dependency array ensures this runs once on mount
 
 
   return (
