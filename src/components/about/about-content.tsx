@@ -23,17 +23,40 @@ const curriculum = [
 ];
 
 const commitments = [
-  "Helping children develop socially",
-  "Helping children develop their intelligence",
-  "Fostering in children an abiding curiosity",
-  "Helping children develop high self-esteem",
-  "Developing positive attitude in children towards school and learning",
-  "Cultivating the habits of initiative and persistence",
-  "Assisting children in building good thinking and concentration skills",
-  "Initiating inner security, self-discipline and a sense of order",
-  "Helping children develop sensory motor skills",
-  "Sharpening their ability to discriminate and judge between good and bad ethics"
-];
+  {
+    "title": "Helping children develop socially",
+    "description": "The Montessori Prepared Environment helps children develop socially by providing a heterogeneous classroom where children of mixed ages interact, collaborate, and learn from each other, fostering empathy and respect.\n\nIt encourages cooperative work, sharing, and peaceful conflict resolution, which helps children build communication skills, self-confidence, and positive relationships with peers and adults.\n\nChildren acquire socially acceptable behaviors, learn to wait patiently for their turns, avoid vulgar movements, exercise restraint, and use polite language."
+  },
+  {
+    "title": "Helping children develop their intelligence",
+    "description": "Children are exposed to hands-on activities which enable them to learn from concrete to abstract concepts.\n\nThe environment provides sensory materials that stimulate exploration, problem-solving, and critical thinking.\n\nAs Maria Montessori stated, \"The hand is the instrument of intelligence\"."
+  },
+  {
+    "title": "Fostering abiding curiosity",
+    "description": "Freedom in the environment allows children to pick their own work and follow interests at their own pace, which keeps curiosity alive.\n\nLearning is driven by internal questions rather than external rewards.\n\nThe environment is ordered and beautiful; everything is scaled to the child’s size, uncluttered, and has a specific place.\n\nThis promotes a sense of safety and clarity, helping their curiosity to flourish."
+  },
+  {
+    "title": "Helping children develop high self-esteem",
+    "description": "The materials in the environment are self-correcting and hands-on, allowing children to learn by doing and discovering errors independently.\n\nThese materials give feedback without waiting for adult approval, which helps build the child’s confidence.\n\nMixed age groups encourage collaboration rather than competition, increasing confidence in older children while inspiring the younger ones."
+  },
+  {
+    "title": "Develop positive attitude towards school and learning",
+    "description": "The Montessori Environment gives children the freedom to choose meaningful hands-on activities that spark curiosity and build confidence.\n\nIts calm, respectful, and individualized learning approach helps children feel successful and genuinely excited to learn."
+  },
+  {
+    "title": "Cultivating the habit of initiative and persistence",
+    "description": "The environment cultivates initiative by allowing children to choose their own work and encouraging them to take responsibility for starting tasks independently.\n\nPersistence is built through engaging, self-correcting materials that invite repeated practice, developing concentration and the satisfaction of completing challenging activities."
+  },
+  {
+    "title": "Assisting children build good thinking and concentration skills",
+    "description": "Good thinking and concentration skills are built as children work with carefully sequenced materials that require them to observe, explore, and solve problems independently.\n\nAs children work at their own paces, they are able to build good concentration and thinking skills."
+  },
+  {
+    "title": "Initiating inner security, self-discipline and a sense of order",
+    "description": "The Montessori Environment fosters inner security by providing a predictable, calm, and respectful setting where children feel safe to explore and make choices independently by adhering to ground rules.\n\nIt promotes self-discipline and a sense of order through structured routines, carefully organized materials, and practical life activities that teach children to take responsibility for their actions, care for their environment, and develop consistent good habits."
+  }
+]
+
 
 
 export default function AboutContent() {
@@ -77,14 +100,15 @@ export default function AboutContent() {
             <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
               <CardHeader>
                 <CardTitle className="font-headline">Our Commitments</CardTitle>
+                <CardDescription>We are committed to the following principles:</CardDescription>
               </CardHeader>
               <CardContent>
                 <Accordion type="single" collapsible className="w-full">
                   {commitments.map((commitment, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="text-sm">{commitment}</AccordionTrigger>
+                      <AccordionTrigger className="text-sm">{commitment.title}</AccordionTrigger>
                       <AccordionContent>
-                        We are dedicated to fostering this aspect of your child's growth.
+                        {commitment.description}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
